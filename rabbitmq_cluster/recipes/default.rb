@@ -27,3 +27,8 @@ rabbitmq_user node['rabbitmq_cluster']['user'] do
   permissions ".* .* .*"
   action :set_permissions
 end
+
+execute 'reset-node' do
+  command 'rabbitmqctl stop_app && rabbitmqctl reset && rabbitmqctl start_app'
+  action :nothing
+end
